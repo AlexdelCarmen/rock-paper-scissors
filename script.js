@@ -51,26 +51,56 @@ function playRound() {
     // We start by checking if a draw exists
     if (computerSelection == playerSelection) {
         roundResult = 'draw';
-        alert(`It's a draw, you and the computer both picked ${computerSelection}`);
+        alert(`It's a draw, you and the computer both picked ${computerSelection}, you both get half a point`);
         console.log(roundResult);
         return roundResult;
     } 
     // now we check if the computer won by looking if any of the three combinations on the next if statemnt exist 
     else if ((computerSelection == 'rock' && playerSelection == 'scissors') || (computerSelection == 'paper' && playerSelection == 'rock') || (computerSelection == 'scissors' && playerSelection == 'paper')){
         roundResult = 'computer wins';
-        alert(`Computer wins! ${computerSelection} beats ${playerSelection}`);
+        alert(`Computer wins! ${computerSelection} beats ${playerSelection}, computer gets a point`);
         console.log(roundResult);
         return roundResult;
     }
     // if none of those combinations happened, the player won  
     else {
         roundResult = 'player wins'; 
-        alert(`You win! ${playerSelection} beats ${computerSelection}`);
+        alert(`You win! ${playerSelection} beats ${computerSelection}, you get a point`);
         console.log(roundResult);
         return roundResult;
     }
     
 }
 
-// Count points from player and machine, a win is 1 point, a draw is 0.5 points, losing gives 0 points
 // Set match to last 5 rounds, at the end display who wins or if it is a draw
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 1; i < 5; i++) {
+        let roundResult = playRound();
+        switch(roundResult) {
+            case 'computer wins': 
+                computerScore += 1;
+            break;
+            case 'player wins':
+                playerScore += 1;
+            break;
+            case 'draw':
+                playerScore += 0.5;
+                computerScore += 0.5;
+            break; 
+        }
+    }
+
+    if (playerScore == computerScore) {
+        alert(`It's a draw! You and the computer both scored ${playerScore}`);
+    } else if (playerScore < computerScore){
+        alert(`Computer wins! Your score was ${playerScore} and the computer scored ${computerScore}`);
+        
+    } else {
+        alert(`You win! Your score was ${playerScore} and the computer scored ${computerScore}`);
+    }
+}
+
+game();
+// Count points from player and machine, a win is 1 point, a draw is 0.5 points, losing gives 0 points

@@ -7,19 +7,18 @@ function computerPlay() {
     // Here we decide what number represents what choice for the game and assign it to computerChoice
     switch (randomNum) {
         case 1: 
-        computerChoice = 'rock';
+        computerSelection = 'rock';
         break;
         case 2: 
-        computerChoice = 'paper';
+        computerSelection = 'paper';
         break;
         case 3:
-        computerChoice = 'scissors'; 
+        computerSelection = 'scissors'; 
         break; 
     }
     return computerSelection;
 }
 
-computerPlay();
 // Get input from player for rock, paper or scissors 
 
 function playerPlay() {
@@ -39,8 +38,39 @@ function playerPlay() {
     }
 }
 
-playerPlay();
-// Convert player input to lowercase and trim spaces (this makes it not case sensitive)
+
+
 // Duel machine versus player, rock beats scissors, paper beats rock, scissors beat paper, same result is a draw
+function playRound() {
+    // This will play one round of the game
+    // We are storing the result of the round in this variable
+    let roundResult;
+    playerSelection = playerPlay();
+    computerSelection = computerPlay();
+    console.log (computerSelection);
+    // We start by checking if a draw exists
+    if (computerSelection == playerSelection) {
+        roundResult = 'draw';
+        alert(`It's a draw, you and the computer both picked ${computerSelection}`);
+        console.log(roundResult);
+        return roundResult;
+    } 
+    // now we check if the computer won by looking if any of the three combinations on the next if statemnt exist 
+    else if ((computerSelection == 'rock' && playerSelection == 'scissors') || (computerSelection == 'paper' && playerSelection == 'rock') || (computerSelection == 'scissors' && playerSelection == 'paper')){
+        roundResult = 'computer wins';
+        alert(`Computer wins! ${computerSelection} beats ${playerSelection}`);
+        console.log(roundResult);
+        return roundResult;
+    }
+    // if none of those combinations happened, the player won  
+    else {
+        roundResult = 'player wins'; 
+        alert(`You win! ${playerSelection} beats ${computerSelection}`);
+        console.log(roundResult);
+        return roundResult;
+    }
+    
+}
+
 // Count points from player and machine, a win is 1 point, a draw is 0.5 points, losing gives 0 points
 // Set match to last 5 rounds, at the end display who wins or if it is a draw

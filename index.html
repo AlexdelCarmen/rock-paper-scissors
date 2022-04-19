@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock - Paper - Scissors</title>
-</head>
-<body>
-    
-</body>
-<script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="neonText">Rock - Paper - Scissors</h1>
+    <h2>Let's play!</h2>
+    <div class="scoreboard">
+     <div class="scores">
+        <div class="score-container player">
+            <p id="playerScore">0</p>
+            <p class="banner">Player</p>
+        </div>
+        <div class="result score-container">
+          <p id="result">You win</p>
+          <p id="player-result">You picked rock</p>
+          <p id="computer-result">Computer picked scissors</p>
+        </div>
+        <div class="score-container computer">
+            <p id="computerScore">0</p>
+            <p class="banner">Computer</p>
+        </div>
+    </div>
+      <div class="round-counter">
+        <p id="round">0</p>
+        <p class="banner">rounds</p>
+      </div>
+    </div>
+    <div class="selection-buttons-container">
+      <h3>Pick your weapon</h3>
+      <div class="button-container">
+      <button class="game-button" id="rock">ROCK</button>
+      <button class="game-button" id="paper">PAPER</button>
+      <button class="game-button" id="scissors">SCISSORS</button>
+    </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
 </html>

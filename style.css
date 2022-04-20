@@ -117,6 +117,8 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    background-color: var(--dark-color-2);
+    padding: 5rem;
 }
 
 h3 {
@@ -124,7 +126,7 @@ h3 {
     color: var(--dark-color-1);
     background-color: var(--light-color-1);
     height: 3rem;
-    width: 100%;
+    width: 100vw;
     text-align: center;
     margin-top: -.5rem; 
     padding-top: 1rem;
@@ -192,4 +194,30 @@ h3 {
 
   .computerWin, #computer-result {
       color: var(--primary-color);
+  }
+
+  .computerNeonText {
+    animation: computerFlicker 1.5s infinite alternate;
+    color: #fff;
+  }
+
+  @keyframes computerFlicker {
+    
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+  
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px var(--primary-color),
+        0 0 80px var(--primary-color),
+        0 0 90px var(--primary-color),
+        0 0 100px var(--primary-color),
+        0 0 150px var(--primary-color);
+    
+    }
+    
+    20%, 24%, 55% {        
+        text-shadow: none;
+    }    
   }

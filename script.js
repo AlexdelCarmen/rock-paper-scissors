@@ -23,43 +23,39 @@ function computerPlay() {
 
 // Get input from player for rock, paper or scissors
 
-function playerPlay() {
-  // Grabbing input from player
-  let playerSelection = prompt("Let's play! Pick rock, paper or scissors:");
-  // Now let's convert this to lowercase and clean any extra spaces
-  playerSelection = playerSelection.toLowerCase();
-  playerSelection = playerSelection.trim();
-  // We check if the player input is valid now, if not we ask for it again
-  if (
-    playerSelection == "rock" ||
-    playerSelection == "paper" ||
-    playerSelection == "scissors"
-  ) {
-    // If the input is valid, we exit the function and return the player input
-    return playerSelection;
-  } else {
-    // When the player enters any other thing we ask for the input again
-    alert("Woah that's not rock, paper or scissors! Please try again!");
-    playerPlay();
-  }
-}
+const playerBoard = document.getElementById('playerScore');
+const computerBoard = document.getElementById('computerScore');
+const resultBoard = document.getElementById('result');
+const resultPlayer = document.getElementById('player-result');
+const resultComputer = document.getElementById('computer-result');
+const buttons = document.querySelectorAll('button'); 
+let playerScore = 0;
+let computerScore = 0;
+let playerSelection;
+buttons.forEach(button => button.addEventListener('click', (e)=> {
+  playerSelection = e.target.id;
+  playRound();
+}));
+
+
+
 
 // Duel machine versus player, rock beats scissors, paper beats rock, scissors beat paper, same result is a draw
 function playRound() {
   // This will play one round of the game
   // We are storing the result of the round in this variable
-  let roundResult;
-  playerSelection = playerPlay();
   computerSelection = computerPlay();
-  console.log(computerSelection);
-  // We start by checking if a draw exists
+
+ // We start by checking if a draw exists
   if (computerSelection == playerSelection) {
-    roundResult = "draw";
-    alert(
-      `It's a draw, you and the computer both picked ${computerSelection}, you both get half a point`
-    );
-    console.log(roundResult);
-    return roundResult;
+
+    playerScore += 0.5;
+    computerScore += 0.5;
+    playerBoard.textContent = playerScore;
+    computerBoard.textContent = computerScore;
+    resultBoard.textContent = 'It\'s a draw!';
+    resultPlayer.textContent = `You picked ${playerSelection}`;
+    resultComputer.textContent = `The computer picked ${computerSelection}`;
   }
   // now we check if the computer won by looking if any of the three combinations on the next if statemnt exist
   else if (
@@ -68,19 +64,19 @@ function playRound() {
     (computerSelection == "scissors" && playerSelection == "paper")
   ) {
     roundResult = "computer wins";
-    alert(
-      `Computer wins! ${computerSelection} beats ${playerSelection}, computer gets a point`
-    );
-    console.log(roundResult);
-    return roundResult;
+    computerScore += 1;
+    computerBoard.textContent = computerScore;
+    resultBoard.textContent = 'Computer wins!';
+    resultPlayer.textContent = `You picked ${playerSelection}`;
+    resultComputer.textContent = `The computer picked ${computerSelection}`;
   }
   // if none of those combinations happened, the player won
   else {
     roundResult = "player wins";
-    alert(
-      `You win! ${playerSelection} beats ${computerSelection}, you get a point`
-    );
-    console.log(roundResult);
-    return roundResult;
+    playerScore += 1
+    playerBoard.textContent = playerScore;
+    resultBoard.textContent = 'You win!';
+    resultPlayer.textContent = `You picked ${playerSelection}`;
+    resultComputer.textContent = `The computer picked ${computerSelection}`;
   }
 }
